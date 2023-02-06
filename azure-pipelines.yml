@@ -7,7 +7,9 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  name: az400m05105a-pool
+  demands:
+  - agent.name -equals az400m05-vm0
 
 variables:
   solution: '**/*.sln'
@@ -15,8 +17,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
-
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
